@@ -2,6 +2,7 @@
 import serial, string, time
 import requests
 import json
+import smtplib
 
 flag = 0
 flagReq = 0
@@ -27,4 +28,10 @@ while True:
 				req = deviceReq.json()
 				message = req['message']
 				print(message)
+				server = smtplib.SMTP('smtp.gmail.com', 587)
+				server.starttls()
+				server.login("hlavsa.nikola@gmail.com", "10kuna10")
+				msg = message
+				server.sendmail("hlavsa.nikola@gmail.com", "nargz44@gmail.com", msg)
+				server.quit()
 		
